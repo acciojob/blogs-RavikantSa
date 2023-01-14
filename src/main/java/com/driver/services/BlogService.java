@@ -35,9 +35,9 @@ public class BlogService {
         User user = userRepository1.findById(userId).get();
         blog.setUser(user);
 
-        List<Blog> currbloglist  = user.getListOfBlogs();
+        List<Blog> currbloglist  = user.getBlogList();
         currbloglist.add(blog);
-        user.setListOfBlogs(currbloglist);
+        user.setBlogList(currbloglist);
         userRepository1.save(user);
         //updating the blog details
 

@@ -15,7 +15,8 @@ public class User {
     private String lastName;
 
     @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL) // mapped by child name of FK
-    private List<Blog> listOfBlogs;
+    private List<Blog> BlogList;
+
 
 
     public User() {
@@ -29,14 +30,22 @@ public class User {
         this.lastName = lastName;
     }
 
-    public List<Blog> getListOfBlogs() {
-        return listOfBlogs;
+    public List<Blog> getBlogList() {
+        return BlogList;
     }
 
-    public void setListOfBlogs(List<Blog> listOfBlogs) {
-        this.listOfBlogs = listOfBlogs;
+    public void setBlogList(List<Blog> blogList) {
+        BlogList = blogList;
     }
 
+//    public List<Blog> getListOfBlogs() {
+//        return BlogList;
+//    }
+
+
+//   public void setListOfBlogs(List<Blog> listOfBlogs) {
+//        this.BlogList = listOfBlogs;
+//    }
     public int getId() {
         return id;
     }
