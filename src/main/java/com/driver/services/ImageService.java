@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ImageService {
@@ -44,9 +45,14 @@ public class ImageService {
     public int countImagesInScreen(Image image, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
-
-
-
+        if (screenDimensions.split("X").length == 2 || Objects.nonNull(image)) {
+            Integer maxLength = Integer.parseInt(screenDimensions.split("X")[0]) / Integer.parseInt(image.getDimension().split("X")[0]) ;
+            Integer maxBreadth = Integer.parseInt(screenDimensions.split("X")[1]) / Integer.parseInt(image.getDimension().split("X")[1]);
+            return maxLength * maxBreadth;
+        }
         return 0;
+
+
+//        return 0;
     }
 }
