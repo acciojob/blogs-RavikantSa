@@ -34,15 +34,18 @@ public class BlogService {
         Blog blog = new Blog(title,content);
         User user = userRepository1.findById(userId).get();
         blog.setUser(user);
+        blog.setTitle(title);
+        blog.setContent(content);
+        blog.setPubDate(new Date());
 
+
+        //updating the blog details
         List<Blog> currbloglist  = user.getBlogList();
         currbloglist.add(blog);
         user.setBlogList(currbloglist);
-        userRepository1.save(user);
-        //updating the blog details
 
         //Updating the userInformation and changing its blogs
-
+        userRepository1.save(user);
     }
 
     public Blog findBlogById(int blogId){
@@ -65,6 +68,9 @@ public class BlogService {
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
-        blogRepository1.deleteById(blogId);
+        if(blogRepository1.findById(blogId).isPresent()){
+            blogRepository1.deleteById(blogId);
+        }
+
     }
 }
